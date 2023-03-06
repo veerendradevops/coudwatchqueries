@@ -48,7 +48,7 @@ fields @timestamp,srcAddr,dstAddr, @message
 
 
 fields @timestamp,srcAddr,dstAddr, @message 
-| filter srcAddr = "146.215.150.187" 
+| filter srcAddr = "0.0.0.0" 
 | sort @timestamp desc
 
 

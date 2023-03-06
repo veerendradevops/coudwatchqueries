@@ -1,0 +1,89 @@
+Cloudwatch queries
+
+
+fields @message
+| filter (interfaceId=‘eni-x.x.x.x.x’ or interfaceIdinterfaceId = 'eni-000000000005' )
+and action = ‘ACCEPT’ and (dstPort='1433' or dstPort='1436') and
+ (
+isIpInSubnet(srcAddr,'0.0.0.0/27')
+)
+| display srcAddr, dstPort
+ 
+ 
+for port 80 and port 443
+ 
+fields @message
+| filter action = ‘ACCEPT’  and (dstPort='80' or dstPort='443') and
+ (
+isIpInSubnet(srcAddr,'0.0.0.0/27')
+)
+| display srcAddr, dstPort
+
+
+
+fields @message
+| filter (interfaceId=‘eni-xxxxxxxxxxxx’ or interfaceId = 'eni-xxxxxxxxxx' )
+and action = ‘ACCEPT’ and (dstPort='1433' or dstPort='1436') and
+ (
+isIpInSubnet(srcAddr,'0.0.0.0/27')
+)
+| display srcAddr, dstPort
+
+fields @message
+| filter (interfaceId=‘eni-xxxxxxxxxx’ or interfaceId= 'eni-xxxxxxxx' )
+and action = ‘ACCEPT’ and (dstPort='1433' or dstPort='1436') and
+| display srcAddr, dstPort
+
+
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter srcAddr like /^(?i)0.0.0.0/ and dstPort = 1433
+| sort @timestamp desc
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter srcAddr = "0.0.0.0" and dstPort = 1433
+| sort @timestamp desc
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter srcAddr = "146.215.150.187" 
+| sort @timestamp desc
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter srcAddr = "0.0.0.0" 
+| sort @timestamp desc
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter srcAddr = "0.0.0.0" 
+| sort @timestamp desc
+
+
+
+
+
+fields @timestamp,srcAddr,dstAddr, @message 
+| filter (dstPort='1433' or dstPort='1436') and action='ACCEPT' and
+ (
+isIpInSubnet(srcAddr,'0.0.0.0/27')
+)
+| display srcAddr, dstAddr, srcPort, dstPort, action
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

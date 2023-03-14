@@ -75,6 +75,10 @@ isIpInSubnet(srcAddr,'0.0.0.0/27')
 
 
 
+fields @timestamp, @message | filter @logStream like /auth/ | filter @message like /AWSServiceRoleForBatch/ | sort @timestamp desc | limit 20
+
+
+
 
 
 
